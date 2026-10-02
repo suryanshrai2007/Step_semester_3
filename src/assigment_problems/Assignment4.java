@@ -1,0 +1,43 @@
+abstract class ClassroomDevice {
+    public ClassroomDevice() {
+    }
+
+    public abstract String operate();
+}
+
+interface Chargeable {
+    String charge();
+    String charge(int minutes);
+}
+
+class Tablet extends ClassroomDevice implements Chargeable {
+    private String assetTag;
+
+    public Tablet(String assetTag) {
+        this.assetTag = assetTag;
+    }
+
+    @Override
+    public String operate() {
+        return "Tablet " + assetTag + " displaying lesson";
+    }
+
+    @Override
+    public String charge() {
+        return assetTag + " charging";
+    }
+
+    @Override
+    public String charge(int minutes) {
+        return assetTag + " charging for " + minutes + " minutes";
+    }
+}
+
+public class Assignment4 {
+    public static void main(String[] args) {
+        Tablet t = new Tablet("TAB-5");
+        System.out.println(t.operate()); // "Tablet TAB-5 displaying lesson"
+        System.out.println(t.charge());  // "TAB-5 charging"
+        System.out.println(t.charge(30)); // "TAB-5 charging for 30 minutes"
+    }
+}
